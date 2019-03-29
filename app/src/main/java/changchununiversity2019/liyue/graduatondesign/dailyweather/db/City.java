@@ -1,6 +1,8 @@
 package changchununiversity2019.liyue.graduatondesign.dailyweather.db;
 
-public class City {
+import org.litepal.crud.DataSupport;
+
+public class City extends DataSupport {
 
     private int id;
     private String cityName;
