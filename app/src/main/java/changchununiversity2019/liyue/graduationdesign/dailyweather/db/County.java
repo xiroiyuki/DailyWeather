@@ -1,4 +1,4 @@
-package changchununiversity2019.liyue.graduatondesign.dailyweather.db;
+package changchununiversity2019.liyue.graduationdesign.dailyweather.db;
 
 import org.litepal.crud.DataSupport;
 

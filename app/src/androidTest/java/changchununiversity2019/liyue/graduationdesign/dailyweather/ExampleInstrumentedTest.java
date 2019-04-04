@@ -1,4 +1,4 @@
-package changchununiversity2019.liyue.graduatondesign.dailyweather;
+package changchununiversity2019.liyue.graduationdesign.dailyweather;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("changchununiversity2019.liyue.graduatondesign.dailyweather", appContext.getPackageName());
+        assertEquals("changchununiversity2019.liyue.graduationdesign.dailyweather", appContext.getPackageName());
     }
 }

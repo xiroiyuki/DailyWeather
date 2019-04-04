@@ -1,16 +1,17 @@
-package changchununiversity2019.liyue.graduatondesign.dailyweather.util;
+package changchununiversity2019.liyue.graduationdesign.dailyweather.util;
 
 import android.text.TextUtils;
 
-import com.google.gson.JsonArray;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import changchununiversity2019.liyue.graduatondesign.dailyweather.db.City;
-import changchununiversity2019.liyue.graduatondesign.dailyweather.db.County;
-import changchununiversity2019.liyue.graduatondesign.dailyweather.db.Province;
+import changchununiversity2019.liyue.graduationdesign.dailyweather.db.City;
+import changchununiversity2019.liyue.graduationdesign.dailyweather.db.County;
+import changchununiversity2019.liyue.graduationdesign.dailyweather.db.Province;
+import changchununiversity2019.liyue.graduationdesign.dailyweather.gson.Weather;
 
 public class Utility {
 
@@ -81,5 +82,20 @@ public class Utility {
             }
         }
         return false;
+    }
+
+    /**
+     * 转化JSON数据为Weather实体类
+     */
+    public static Weather handleWeatherResponse(String response){
+        try{
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray jsonArray = jsonObject.getJSONArray("HeWeather");
+            String weatherContent = jsonArray.getJSONObject(0).toString();
+            return new Gson().fromJson(weatherContent,Weather.class);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }

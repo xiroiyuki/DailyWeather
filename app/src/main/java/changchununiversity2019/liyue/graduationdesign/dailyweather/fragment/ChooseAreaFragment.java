@@ -1,6 +1,7 @@
-package changchununiversity2019.liyue.graduatondesign.dailyweather.fragment;
+package changchununiversity2019.liyue.graduationdesign.dailyweather.fragment;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -19,12 +20,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import changchununiversity2019.liyue.graduatondesign.dailyweather.R;
-import changchununiversity2019.liyue.graduatondesign.dailyweather.db.City;
-import changchununiversity2019.liyue.graduatondesign.dailyweather.db.County;
-import changchununiversity2019.liyue.graduatondesign.dailyweather.db.Province;
-import changchununiversity2019.liyue.graduatondesign.dailyweather.util.HttpUtil;
-import changchununiversity2019.liyue.graduatondesign.dailyweather.util.Utility;
+import changchununiversity2019.liyue.graduationdesign.dailyweather.R;
+import changchununiversity2019.liyue.graduationdesign.dailyweather.activities.WeatherActivity;
+import changchununiversity2019.liyue.graduationdesign.dailyweather.db.City;
+import changchununiversity2019.liyue.graduationdesign.dailyweather.db.County;
+import changchununiversity2019.liyue.graduationdesign.dailyweather.db.Province;
+import changchununiversity2019.liyue.graduationdesign.dailyweather.util.HttpUtil;
+import changchununiversity2019.liyue.graduationdesign.dailyweather.util.Utility;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
@@ -69,6 +71,12 @@ public class ChooseAreaFragment extends Fragment {
                 }else if(currentLevel == LEVEL_CITY){
                     selectedCity = cityList.get(position);
                     queryCounties();
+                }else if(currentLevel == LEVEL_COUNTY){
+                    String weatherId = countyList.get(position).getWeatherId();
+                    Intent intent = new Intent(getActivity(), WeatherActivity.class);
+                    intent.putExtra("weather_id",weatherId);
+                    startActivity(intent);
+                    getActivity().finish();
                 }
             }
         });

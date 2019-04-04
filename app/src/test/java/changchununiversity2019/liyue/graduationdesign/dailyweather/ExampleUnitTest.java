@@ -1,4 +1,4 @@
-package changchununiversity2019.liyue.graduatondesign.dailyweather;
+package changchununiversity2019.liyue.graduationdesign.dailyweather;
 
 import org.junit.Test;
 

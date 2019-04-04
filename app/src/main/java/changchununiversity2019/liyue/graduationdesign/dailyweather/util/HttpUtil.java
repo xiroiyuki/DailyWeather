@@ -1,4 +1,4 @@
-package changchununiversity2019.liyue.graduatondesign.dailyweather.util;
+package changchununiversity2019.liyue.graduationdesign.dailyweather.util;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

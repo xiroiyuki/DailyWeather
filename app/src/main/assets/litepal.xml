@@ -3,8 +3,8 @@
     <version value = "1"/>
 
     <list>
-        <mapping class="changchununiversity2019.liyue.graduatondesign.dailyweather.db.Province"/>
-        <mapping class="changchununiversity2019.liyue.graduatondesign.dailyweather.db.City"/>
-        <mapping class="changchununiversity2019.liyue.graduatondesign.dailyweather.db.County"/>
+        <mapping class="changchununiversity2019.liyue.graduationdesign.dailyweather.db.Province"/>
+        <mapping class="changchununiversity2019.liyue.graduationdesign.dailyweather.db.City"/>
+        <mapping class="changchununiversity2019.liyue.graduationdesign.dailyweather.db.County"/>
     </list>
 </litepal>

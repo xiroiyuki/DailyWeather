@@ -1,4 +1,4 @@
-package changchununiversity2019.liyue.graduatondesign.dailyweather.activities;
+package changchununiversity2019.liyue.graduationdesign.dailyweather.activities;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
@@ -18,7 +17,7 @@ import com.baidu.location.LocationClientOption;
 import java.util.ArrayList;
 import java.util.List;
 
-import changchununiversity2019.liyue.graduatondesign.dailyweather.R;
+import changchununiversity2019.liyue.graduationdesign.dailyweather.R;
 
 public class LBSTest extends AppCompatActivity {
 
