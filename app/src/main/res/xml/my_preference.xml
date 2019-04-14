@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory>
+        <PreferenceScreen
+            android:icon="@drawable/home_pic"
+            android:key="backHome"
+            android:title="回到首页"></PreferenceScreen>
+
+        <SwitchPreference
+            android:checked="true"
+            android:defaultValue="true"
+            android:icon="@drawable/location_pic"
+            android:key="acquireLocation"
+            android:summary="是否使用定位的位置"
+            android:summaryOff="使用自定义的位置"
+            android:summaryOn="使用定位的位置"
+            android:title="位置选择" />
+
+        <PreferenceScreen
+            android:enabled="false"
+            android:icon="@drawable/auto_select"
+            android:key="autoSelect"
+            android:summary="进行自定义位置信息的选择"
+            android:title="进入自定义位置"></PreferenceScreen>
+
+        <SwitchPreference
+            android:checked="true"
+            android:defaultValue="true"
+            android:icon="@drawable/message_pic"
+            android:key="pushInfoSet"
+            android:summary="是否推送最新天气资讯"
+            android:summaryOff="不推送最新天气资讯"
+            android:summaryOn="推送最新天气资讯"
+            android:title="是否允许推送通知" />
+
+        <SwitchPreference
+            android:checked="true"
+            android:defaultValue="true"
+            android:icon="@drawable/auto_update"
+            android:key="autoUpdate"
+            android:summary="是否自动更新天气资讯"
+            android:summaryOff="不自动更新天气资讯"
+            android:summaryOn="自动更新天气资讯"
+            android:title="是否允许自动更新" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
