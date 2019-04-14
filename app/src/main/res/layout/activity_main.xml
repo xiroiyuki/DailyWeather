@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/choose_area_fragment"
-        android:name="changchununiversity2019.liyue.graduationdesign.dailyweather.fragment.ChooseAreaFragment"
+        android:name="changchununiversity2019.liyue.graduatondesign.dailyweather.fragment.ChooseAreaFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
