@@ -9,7 +9,7 @@
 
     <fragment
         android:id="@+id/set_fragment"
-        android:name="changchununiversity2019.liyue.graduationdesign.dailyweather.fragment.SettingFragment"
+        android:name="changchununiversity2019.liyue.graduationdesign.dw.fragment.SettingFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="25dp"/>

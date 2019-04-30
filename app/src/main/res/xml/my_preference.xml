@@ -6,10 +6,9 @@
         <PreferenceScreen
             android:icon="@drawable/home_pic"
             android:key="backHome"
-            android:title="回到首页"></PreferenceScreen>
+            android:title="回到首页" />
 
         <SwitchPreference
-            android:checked="true"
             android:defaultValue="true"
             android:icon="@drawable/location_pic"
             android:key="acquireLocation"
@@ -23,10 +22,9 @@
             android:icon="@drawable/auto_select"
             android:key="autoSelect"
             android:summary="进行自定义位置信息的选择"
-            android:title="进入自定义位置"></PreferenceScreen>
+            android:title="进入自定义位置" />
 
         <SwitchPreference
-            android:checked="true"
             android:defaultValue="true"
             android:icon="@drawable/message_pic"
             android:key="pushInfoSet"
@@ -36,7 +34,6 @@
             android:title="是否允许推送通知" />
 
         <SwitchPreference
-            android:checked="true"
             android:defaultValue="true"
             android:icon="@drawable/auto_update"
             android:key="autoUpdate"

@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "changchununiversity2019.liyue.graduationdesign.dailyweather"
+        applicationId "changchununiversity2019.liyue.graduationdesign.dw"
         minSdkVersion 24
         targetSdkVersion 28
         versionCode 1
@@ -11,19 +11,23 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
+
+
     signingConfigs {
         config {
-            storeFile file { KEY_PATH }
-            storePassword KEY_PASS
-            keyAlias ALIAS_NAME
-            keyPassword ALIAS_PASS
+            storeFile file('D:/APKRegister/liyue.jks')
+            storePassword '1234567'
+            keyAlias 'liyue'
+            keyPassword '1234567'
         }
     }
+
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //signingConfig signingConfigs.config
             signingConfig signingConfigs.config
         }
     }
@@ -40,7 +44,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     implementation 'org.litepal.android:core:1.4.1'
-    implementation 'com.squareup.okhttp3:okhttp:3.4.1'
+    implementation 'com.squareup.okhttp3:okhttp:3.9.0'
     implementation 'com.google.code.gson:gson:2.7'
     implementation 'com.github.bumptech.glide:glide:3.7.0'
 }

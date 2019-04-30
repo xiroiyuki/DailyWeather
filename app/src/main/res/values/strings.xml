@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DailyWeather</string>
+    <string name="app_name">每日天气</string>
     <string name="title_activity_settings">Settings</string>
 
     <!-- Strings related to Settings -->
