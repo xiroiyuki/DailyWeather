@@ -44,14 +44,15 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textColor="#fff"
-                    android:textSize="20sp"/>
+                    android:textSize="17sp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="体感温度"
-                    android:textColor="#fff"/>
+                    android:textColor="#fff"
+                    android:textSize="18sp"/>
 
             </LinearLayout>
 
@@ -74,14 +75,15 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textColor="#fff"
-                    android:textSize="20sp"/>
+                    android:textSize="17sp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="相对湿度"
-                    android:textColor="#fff"/>
+                    android:textColor="#fff"
+                    android:textSize="18sp"/>
 
             </LinearLayout>
 
@@ -104,14 +106,15 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textColor="#fff"
-                    android:textSize="20sp"/>
+                    android:textSize="17sp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="风向"
-                    android:textColor="#fff"/>
+                    android:textColor="#fff"
+                    android:textSize="18sp"/>
 
             </LinearLayout>
 
@@ -134,14 +137,15 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textColor="#fff"
-                    android:textSize="20sp"/>
+                    android:textSize="17sp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="风力"
-                    android:textColor="#fff"/>
+                    android:textColor="#fff"
+                    android:textSize="18sp"/>
 
             </LinearLayout>
 

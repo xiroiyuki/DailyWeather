@@ -90,9 +90,6 @@ public class Utility {
      */
     public static Weather handleWeatherResponse(String response){
         try{
-            //JSONObject jsonObject = new JSONObject(response);
-            /*JSONArray jsonArray = jsonObject.getJSONArray("");
-            String weatherContent = jsonArray.getJSONObject(0).toString();*/
             return new Gson().fromJson(response,Weather.class);
         }catch (Exception e){
             e.printStackTrace();
@@ -105,10 +102,6 @@ public class Utility {
      */
     public static AQI handleAQIResponse(String response){
         try{
-            /*JSONObject jsonObject = new JSONObject(response);
-            JSONArray jsonArray = jsonObject.getJSONArray(null);
-            String aqiContent = jsonArray.getJSONObject(0).toString();
-            return new Gson().fromJson(aqiContent, AQI.class);*/
             return new Gson().fromJson(response,AQI.class);
         }catch (Exception e){
             e.printStackTrace();

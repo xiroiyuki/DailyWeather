@@ -1,31 +1,19 @@
 package changchununiversity2019.liyue.graduationdesign.dw.services;
 
-import android.annotation.TargetApi;
 import android.app.AlarmManager;
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.BitmapFactory;
-import android.os.Build;
 import android.os.IBinder;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
-import android.support.v4.app.NotificationCompat;
 
 import com.google.gson.Gson;
 
 import java.io.IOException;
 
-import changchununiversity2019.liyue.graduationdesign.dw.R;
-import changchununiversity2019.liyue.graduationdesign.dw.activities.WeatherActivity;
-import changchununiversity2019.liyue.graduationdesign.dw.gson.Suggestion;
-import changchununiversity2019.liyue.graduationdesign.dw.gson.Weather;
 import changchununiversity2019.liyue.graduationdesign.dw.util.HttpUtil;
-import changchununiversity2019.liyue.graduationdesign.dw.util.Utility;
 import interfaces.heweather.com.interfacesmodule.bean.air.now.AirNow;
 import interfaces.heweather.com.interfacesmodule.view.HeConfig;
 import interfaces.heweather.com.interfacesmodule.view.HeWeather;
@@ -34,8 +22,6 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class AutoUpdateService extends Service {
-
-    private boolean pushNoti = true;
 
     private boolean autoUpdate = true;
 
@@ -49,7 +35,6 @@ public class AutoUpdateService extends Service {
 
     public int onStartCommand(Intent intent, int flags, int startId) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        pushNoti = sharedPreferences.getBoolean("pushInfoSet", true);
         autoUpdate = sharedPreferences.getBoolean("autoUpdate", true);
         if (autoUpdate) {
             requestWeather();
@@ -64,6 +49,7 @@ public class AutoUpdateService extends Service {
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, triggerAtTime, pendingIntent);
 
         return super.onStartCommand(intent, flags, startId);
+
     }
 
     /**
@@ -116,12 +102,6 @@ public class AutoUpdateService extends Service {
                 editor.apply();
             }
         });
-        if (pushNoti) {
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-            String weatherString = sharedPreferences.getString("weather", null);
-            Weather weather = Utility.handleWeatherResponse(weatherString);
-            pushNotification(weather);
-        }
 
     }
 
@@ -146,51 +126,4 @@ public class AutoUpdateService extends Service {
         });
     }
 
-    /**
-     * 推送最新天气通知。
-     *
-     * @param weather
-     */
-    private void pushNotification(Weather weather) {
-        if (pushNoti && weather != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                String channelId = "daily_weather";//设置通道的唯一ID
-                String channelName = "每日天气";//设置通道名
-                int importance = NotificationManager.IMPORTANCE_HIGH;//设置通道优先级
-                createNotificationChannel(channelId, channelName, importance, weather);
-            } else {
-                sendSubscribeMsg(weather);
-            }
-        }
-    }
-
-    @TargetApi(Build.VERSION_CODES.O)
-    private void createNotificationChannel(String channelId, String channelName, int importance, Weather weather) {
-        NotificationChannel channel = new NotificationChannel(channelId, channelName, importance);
-        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        notificationManager.createNotificationChannel(channel);
-        sendSubscribeMsg(weather);
-    }
-
-    public void sendSubscribeMsg(Weather weather) {
-        String comfort = "";
-        for (Suggestion suggestion : weather.suggestions) {
-            if (suggestion.type.equals("comf")) {
-                comfort = "舒适度：" + suggestion.text;
-            }
-        }
-        Intent intent = new Intent(this, WeatherActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
-        NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        Notification notification = new NotificationCompat.Builder(this, "daily_weather")
-                .setContentTitle(weather.basic.cityName + " " + weather.now.temperature + "℃")
-                .setContentText(comfort)
-                .setWhen(System.currentTimeMillis())
-                .setSmallIcon(R.drawable.weather)
-                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.weather))
-                .setAutoCancel(true)
-                .setContentIntent(pendingIntent)
-                .build();
-        manager.notify(2, notification);
-    }
 }

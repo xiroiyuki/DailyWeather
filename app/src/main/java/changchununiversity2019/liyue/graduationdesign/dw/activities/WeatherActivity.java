@@ -119,7 +119,6 @@ public class WeatherActivity extends BaseActivity {
 
     private LocationClient locationClient;
 
-    private ProgressDialog taskDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -238,7 +237,6 @@ public class WeatherActivity extends BaseActivity {
                 } else {
                     mWeatherId = checkPreferences.getString("weather_id", "CN101010100");
                     requestWeather(mWeatherId);
-                    //new RequestTask().execute(mWeatherId);
                 }
             }
         });
@@ -297,20 +295,21 @@ public class WeatherActivity extends BaseActivity {
         private City baiduCity = null;
         private County baiduCounty = null;
 
+        private ProgressDialog taskDialog;
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            //showTaskDialog();
+            showTaskDialog();
         }
 
         @Override
         protected void onPostExecute(Integer integer) {
             super.onPostExecute(integer);
+            closeTaskDialog();
             switch (integer) {
                 case TYPE_FAILED:
-                    //closeTaskDialog();
-                    Toast.makeText(WeatherActivity.this, "获取天气信息失败！可以尝试刷新，再次获取。", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(WeatherActivity.this, "获取定位位置天气信息失败！可以尝试刷新，再次获取。", Toast.LENGTH_SHORT).show();
 
                     break;
 
@@ -406,7 +405,7 @@ public class WeatherActivity extends BaseActivity {
         }
 
         private void queryAllFromServer(String address, final String type, final Object object) {
-            //showProgressDialog();
+
             HttpUtil.sendOkHttpRequest(address, new Callback() {
                 public void onResponse(Call call, Response response) throws IOException {
                     String responseText = response.body().string();
@@ -445,7 +444,7 @@ public class WeatherActivity extends BaseActivity {
 
         /*check end*/
         private void showTaskDialog() {
-            if (taskDialog == null) {
+            if (taskDialog == null || !taskDialog.isShowing()) {
                 taskDialog = new ProgressDialog(WeatherActivity.this);
                 taskDialog.setMessage("正在匹配您的地理信息......");
                 taskDialog.setCanceledOnTouchOutside(false);
@@ -506,13 +505,17 @@ public class WeatherActivity extends BaseActivity {
 
             @Override
             public void onSuccess(interfaces.heweather.com.interfacesmodule.bean.weather.Weather weather) {
-                String weatherString = new Gson().toJson(weather);
                 if (weather != null && weather.getStatus().equals("ok")) {
+                    String weatherString = new Gson().toJson(weather);
                     SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(WeatherActivity.this).edit();
                     editor.putString("weather", weatherString);
                     editor.apply();
                     requestAqi(weatherId);
                 } else {
+                    /*SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(WeatherActivity.this);
+                    Weather weatherShow = Utility.handleWeatherResponse(sharedPreferences.getString("weather",null));
+                    AQI aqiShow = Utility.handleAQIResponse(sharedPreferences.getString("aqi",null));
+                    showWeatherInfo(weatherShow,aqiShow);*/
                     Toast.makeText(WeatherActivity.this, "获取天气数据失败!", Toast.LENGTH_LONG).show();
                 }
             }
@@ -628,7 +631,9 @@ public class WeatherActivity extends BaseActivity {
         }
         weatherLayout.setVisibility(View.VISIBLE);
 
-        pushNotification(cityName + " " + degree, comfort, 2, true);
+        if(pushNoti){
+            pushNotification(cityName + " " + degree, comfort, 2, true);
+        }
         swipeRefreshLayout.setRefreshing(false);
         if (autoUpdateInfo) {
             Intent intent = new Intent(this, AutoUpdateService.class);
