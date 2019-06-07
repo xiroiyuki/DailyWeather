@@ -512,10 +512,7 @@ public class WeatherActivity extends BaseActivity {
                     editor.apply();
                     requestAqi(weatherId);
                 } else {
-                    /*SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(WeatherActivity.this);
-                    Weather weatherShow = Utility.handleWeatherResponse(sharedPreferences.getString("weather",null));
-                    AQI aqiShow = Utility.handleAQIResponse(sharedPreferences.getString("aqi",null));
-                    showWeatherInfo(weatherShow,aqiShow);*/
+
                     Toast.makeText(WeatherActivity.this, "获取天气数据失败!", Toast.LENGTH_LONG).show();
                 }
             }
